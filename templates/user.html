@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compression Tool</title>
+    <link rel="stylesheet" href="../static/Styles/user.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <!-- ---------------------Navbar-------------------- -->
+    <nav class="navbar">
+        <div class="left">
+            <h2>Welcome, <strong>{{ session.first_name }}</strong>!</h2>
+        </div>
+        <div class="right">
+            <input type="checkbox" id="check">
+            <label for="check" class="checkBtn">
+                <i class="fa fa-bars"></i>
+            </label>
+            <ul class="list">
+                <li><a href="{{ url_for('user_dashboard') }}">Home</a></li>
+                <li><a href="#">Gallery</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a class="btn btn-warning" href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- ---------------------Navbar-------------------- -->
+
+    <br>
+    <br>
+
+<div class="row">
+    <div class="container">
+        <h2 class="description">Compress your PDF</h2>
+        <form action="{{ url_for('compress') }}" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="file">Upload PDF:</label>
+                <input type="file" class="form-control-file" id="file" name="file">
+            </div>
+            <button type="submit" class="btn btn-primary">Compress PDF</button>
+        </form>
+    </div>
+
+    <div class="container">
+        <h2 class="description">Compress your Document</h2>
+        <form action="{{ url_for('compress_document') }}" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="file">Upload Document:</label>
+                <input type="file" class="form-control-file" id="file" name="file">
+            </div>
+            <button type="submit" class="btn btn-primary">Compress Document</button>
+        </form>
+    </div>
+    <div class="container">
+        <h2 class="description">Compress your Image</h2>
+        <form action="{{ url_for('compress_image') }}" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="file">Upload Image:</label>
+                <input type="file" class="form-control-file" id="file" name="file">
+            </div>
+            <button type="submit" class="btn btn-primary">Compress Image</button>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <!-- ---------------------Excel Sheet Compressor Design------------------------- -->
+    <div class="container">
+        <h2 class="description">Compress your ExcelSheet</h2>
+        <form action="/compress_excel" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="file">Upload ExcelSheet:</label>
+                <input type="file" class="form-control-file" id="file" name="file">
+            </div>
+            <button type="submit" class="btn btn-primary">Compress Sheet</button>
+        </form>
+    </div>
+    <!-- ---------------------Excel Sheet Compressor Design------------------------- -->
+    <!-- ---------------------Power Point Compressor Design------------------------- -->
+    <br>
+    </br>
+    <div class="container">
+        <h2 class="description">Compress your PPT</h2>
+        <form action="/compress-powerpoint" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="file">Upload PPT:</label>
+                <input type="file" class="form-control-file" id="file" name="file">
+            </div>
+            <button type="submit" class="btn btn-primary">Compress PPT</button>
+        </form>
+    </div>
+    <!-- ---------------------Power Point Compressor Design------------------------- -->
+</div>
+
+    <!-- ---------------------Footer-------------------- -->
+
+
+    <div class="footer">
+        <footer>
+            <div class="social"><a href="https://www.instagram.com/" target=”_blank”><i class="fa fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/" target=”_blank”><i class="fa fa-linkedin"></i></a>
+                <a href="https://twitter.com/i/flow/login" target=”_blank”><i class="fa fa-twitter"></i></a>
+                <a href="https://www.facebook.com/" target=”_blank”><i class="fa fa-facebook"></i></a>
+                <a href="https://www.youtube.com/" target=”_blank”><i class="fa fa-youtube"></i></a>
+            </div>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="">Home</a> </li>
+                <li class="list-inline-item"><a href="">R&D</a></li>
+                <li class="list-inline-item"><a href="">Contact Us</a></li>
+            </ul>
+            <p class="copyright"> 2023 CDAC, Meity - All Rights Reserved </p>
+        </footer>
+    </div>
+
+
+    <!-- ---------------------Footer-------------------- -->
+
+</body>
+</html>

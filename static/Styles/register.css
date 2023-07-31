@@ -1,0 +1,155 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #e7edf1;
+}
+
+.container 
+{
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #d0e1f1;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* CSS for the password input and toggle button */
+.password-input {
+  position: relative;
+}
+
+.password-input input {
+  padding-right: 40px; /* Add space for the toggle button */
+}
+
+.password-input .password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+/* Styles for the eye icons using REmix Icons */
+.ri-eye-line,
+.ri-eye-off-line {
+  font-size: 20px;
+}
+
+h2 {
+  text-align: center;
+  color: #000D36;
+  margin-bottom: 10px; /* Adjust the value as desired */
+}
+
+h5{
+  margin-bottom: -3px; /* Adjust the value as desired */
+}
+
+.alert {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.alert-warning {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  width: 250px;
+}
+
+.form-group1 {
+  margin-bottom: 20px;
+  width: 255px;
+}
+
+.form-group2 {
+  margin-bottom: 20px;
+  width: 100px;
+}
+
+.form-group3 {
+  margin-bottom: 20px;
+  width: 120px;
+}
+
+label {
+  font-family: Arial, sans-serif;
+  display: block;
+  margin-bottom: 5px;
+  color: #000000;
+  text-align: left;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  border-color: #13315C;
+  box-shadow: 0px 0px 5px #034078;
+}
+
+.form-group5 {  
+  display: flex;  
+  justify-content: center;  
+  align-items: center;  
+}  
+
+button {
+  align-self: center;
+  width: 70px;
+  padding: 10px;
+  background: linear-gradient(to right, #134074, #13315C, #0B2545);
+  border: none;
+  border-radius: 4px;
+  color: #f4f0f0;
+  cursor: pointer;
+
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.row .form-group {
+  flex-basis:30%;
+}
+
+.row .form-group4 {
+  flex-basis:45%;
+}
+
+.row1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 44.8rem;
+}
+
+.row1 .form_group2{
+  flex-basis:50%
+}
+
+.row2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 28rem;
+}
+
+.row1 .form_group2{
+  flex-basis:50%
+}

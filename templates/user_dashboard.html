@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compression Tool</title>
+    <link rel="stylesheet" href="../static/Styles/user_dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <br>
+    <div class="container">
+        <nav class="sidebar">           
+            <div>
+                <ul class="side-nav">
+                    <span class="side-nav__header">Main Menu</span>
+                    <li class="side-nav__item side-nav__item-active">
+                        <svg width="22" height="23" viewBox="0 0 22 23" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.23201 3.4202L9.23239 3.41989C10.2108 2.63408 11.7843 2.63834 12.7781 3.42994C12.7783 3.43005 12.7784 3.43015 12.7785 3.43025L18.7784 8.2301C18.7789 8.23054 18.7795 8.23099 18.78 8.23143C19.1189 8.50835 19.4146 8.94381 19.6058 9.44415C19.7968 9.94409 19.8672 10.4662 19.8014 10.8985L18.6475 17.8037C18.6474 17.8042 18.6473 17.8047 18.6472 17.8052C18.4217 19.0989 17.1608 20.1667 15.8585 20.1667H6.1418C4.81982 20.1667 3.58766 19.1252 3.36227 17.8148C3.36221 17.8145 3.36215 17.8142 3.36209 17.8138L2.20746 10.9043L2.20726 10.9032C2.13345 10.4677 2.19947 9.94466 2.39002 9.44498C2.58055 8.94535 2.87982 8.51038 3.22697 8.2334L3.22784 8.2327L9.23201 3.4202ZM11.0001 18.1876C11.6521 18.1876 12.1876 17.652 12.1876 17.0001V14.2501C12.1876 13.5981 11.6521 13.0626 11.0001 13.0626C10.3482 13.0626 9.81263 13.5981 9.81263 14.2501V17.0001C9.81263 17.652 10.3482 18.1876 11.0001 18.1876Z" fill="currentColor" stroke="currentColor"/>
+                        </svg>                       
+                        <span>Dashboard</span>
+                    </li>
+                    <li class="side-nav__item">                       
+                        <span><a href="{{ url_for('pdf_user') }}">Compress PDF</a></span>
+                    </li>
+                    <li class="side-nav__item">                      
+                        <span><a href="{{ url_for('docs_user') }}">Compress Document</a></span>
+                    </li>
+                    <li class="side-nav__item">                       
+                        <span><a href="{{ url_for('ppt_user') }}">Compress PPT</a></span>
+                    </li>
+                    <li class="side-nav__item">                      
+                        <span><a href="{{ url_for('xlsx_user') }}">Compress Sheets</a></span>
+                    </li>
+                    <li class="side-nav__item">                       
+                        <span><a href="{{ url_for('image_user') }}">Compress Images</a></span>
+                    </li>
+                    <li class="side-nav__item last-item">                                      
+                        <span><a href="{{ url_for('uploaded_files') }}">My Uploads</a></span>
+                    </li>
+                    <li class="side-nav__item">                      
+                        <span><a  href="{{ url_for('profile') }}">Profile</a></span>
+                    </li>
+                    <li class="side-nav__item last-item">                                      
+                        <span><a href="{{ url_for('logout') }}">Logout</a></span>
+                    </li>
+
+                </ul>              
+        </nav>
+
+        <main class="main-content">
+            <div class="top-container">
+                <div class="user-nav">
+                    <div class="user-info">
+                        <svg class="user-image" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="24" height="24" fill="white" fill-opacity="0.01"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M1 12C1 18.0751 5.92487 23 12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 1 12ZM21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12ZM12.0321 19C8.67459 19 6.80643 17.2316 6.80643 14V13H17.1158L17.1434 13.9715C17.2358 17.2145 15.4003 19 12.0321 19ZM15.0875 15C14.8526 16.3955 13.9089 17 12.0321 17C10.1563 17 9.18179 16.3902 8.89677 15H15.0875ZM14 8H17V10H14V8ZM10 8H7V10H10V8Z" fill="black"/>
+                        </svg>
+                        <span class="user-name">{{ session.first_name }} {{ session.last_name }}</span>                        
+                    </div>  
+                </div>
+            </div>
+            <div class="bottom-container">
+                <div class="bottom-container__left">
+                    <div class="box spending-box">
+                        <div class="header-container">
+                            <h3 class="section-header">Total Files Uploaded</h3>                                                         
+                        </div>
+                        <h1 class="price">{{total_files}}<span class="price-currency">(files)</span></h1>
+                    </div>
+                    <div class="box spending-box">
+                        <div class="header-container">
+                            <h3 class="section-header">Monthly Statistics</h3>
+                        </div>
+                        <div class="bar-chart">
+                            <canvas id="myChart" height="220px" width="660px"></canvas>
+                        </div>
+                    </div>
+                    <div class="box spending-box">
+                        <div class="header-container">
+                            <h3 class="section-header">Files By Category</h3>
+                        </div>
+                        <div class="pie-chart">
+                            <canvas id="myChart2" height="400px" width="400px"></canvas>
+                        </div>
+                        <div class="overall-spending">
+                            <h4>Overall Files</h4>
+                            <span>{{total_files}}</span>
+                        </div>
+                        <div class="pie-chart__labels">
+                            <div class="pie-chart__labels-item">
+                                <div class="label">
+                                    <div class="label__color first"></div>
+                                    PDF Files
+                                </div>
+                                {{pdf_files}}
+                            </div>
+                            <div class="pie-chart__labels-item">
+                                <div class="label">
+                                    <div class="label__color second"></div>
+                                    PPT files
+                                </div>
+                                {{ppt_files}}
+                            </div>
+                            <div class="pie-chart__labels-item">
+                                <div class="label">
+                                    <div class="label__color third"></div>
+                                    Image Files
+                                </div>
+                                {{image_files}}
+                            </div>
+                            <div class="pie-chart__labels-item">
+                                <div class="label">
+                                    <div class="label__color fourth"></div>
+                                    Document Files
+                                </div>
+                                {{doc_files}}
+                            </div>
+                            <div class="pie-chart__labels-item">
+                                <div class="label">
+                                    <div class="label__color fifth"></div>
+                                    Excel Files
+                                </div>
+                                {{xls_files}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box transaction-box">
+                        <div class="header-container">
+                            <h3 class="section-header">Upload History</h3>                               
+                        </div>
+                        <table class="transaction-history">
+                            <thead>
+                                <tr>
+                                    <th scope="col">FileName</th>
+                                    <th scope="col">File Extension</th>
+                                    <th scope="col">Date Uploaded</th>
+                                    <th scope="col">Time Uploaded</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for file in files %}
+                                    <tr>
+                                        <td class="info" scope="row">{{ file[2] }}</td>
+                                        <td class="info" scope="row">{{ file[3]}}</span></td>
+                                        <td class="info" scope="row">{{ file[4].strftime('%Y-%m-%d') }}</span></td>
+                                        <td class="info" scope="row">{{ file[4].strftime('%H:%M:%S')}}</span></td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>                   
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    <!-- --------------------------- Codepen Code ---------------------------- -->
+
+    <br>
+    <br>
+
+    <!-- ---------------------Footer-------------------- -->
+
+
+    <div class="footer">
+        <footer>
+            <div class="social"><a href="https://www.instagram.com/" target=”_blank”><i class="fa fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/" target=”_blank”><i class="fa fa-linkedin"></i></a>
+                <a href="https://twitter.com/i/flow/login" target=”_blank”><i class="fa fa-twitter"></i></a>
+                <a href="https://www.facebook.com/" target=”_blank”><i class="fa fa-facebook"></i></a>
+                <a href="https://www.youtube.com/" target=”_blank”><i class="fa fa-youtube"></i></a>
+            </div>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="" style="color: white;">Home</a> </li>
+                <li class="list-inline-item"><a href="" style="color: white;">R&D</a></li>
+                <li class="list-inline-item"><a href="" style="color: white;">Contact Us</a></li>
+            </ul>
+            <p class="copyright"> 2023 CDAC, Meity - All Rights Reserved </p>
+        </footer>
+    </div>
+
+    <!-- ---------------------Footer-------------------- -->
+
+</body>
+
+<script>
+// const navItems = document.querySelectorAll('.side-nav__item');
+// const removeClasses = () => {
+//   navItems.forEach(eachItem => {
+//     eachItem.classList.remove('side-nav__item-active');
+//   });
+// }
+
+// navItems.forEach(eachItem => {
+//   eachItem.addEventListener('click', function() {
+//       removeClasses();
+//     eachItem.classList.add('side-nav__item-active');
+//   });
+// });
+
+const ctx = document.getElementById('myChart');
+
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    datasets: [{
+      label: 'Files',
+      data: {{ files_per_month | tojson }},
+      borderWidth: 1,
+      borderRadius: 30,
+      barThickness: 12,
+      backgroundColor: [
+        'rgba(19, 64, 116, 1)'
+      ],
+      borderColor: [
+        'rgba(19, 64, 116, 1)'
+      ],
+      hoverBackgroundColor: [
+        'rgba(11, 37, 69, 1)'
+      ],
+      hoverBorderColor: [
+        'rgba(11, 37, 69, 1)'
+      ],
+    }]
+  },
+  options: {
+    responsive: true,
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: {
+            // Include a dollar sign in the ticks
+            callback: function(value, index, ticks) {
+                return value;
+            },
+            stepSize: 5,
+        },
+      },
+      x: {
+        grid: {
+            display: false
+        }
+      }
+    },
+    plugins: {
+        legend: {
+          display:false,
+          labels: {
+            font: {
+                size: 12,
+                family: "'Plus Jakarta Sans', sans-serif",
+                lineHeight: 18,
+                weight: 600
+            }
+          }
+        }
+    }
+  }
+});
+
+
+const ctx2 = document.getElementById('myChart2');
+
+new Chart(ctx2, {
+  type: 'doughnut',
+  data: {
+    labels: ['Pdf', 'Ppt', 'Image', 'Docs', 'Excel'],
+    datasets: [{
+        data: [{{ pdf_files }}, {{ ppt_files }}, {{ image_files }}, {{ doc_files }}, {{ xls_files }}],
+      borderRadius: 5,
+      cutout: 120,
+      backgroundColor: [
+        'rgba(255, 103, 31, 1)',
+        'rgba(149, 172, 149, 1)',
+        'rgba(4, 106, 56, 1)',
+        'rgba(19, 49, 92, 1)',
+        'rgba(182, 182, 182, 1)'
+      ],
+      hoverOffset: 20,
+      spacing: 8
+    }]
+  },
+  options: {
+    plugins: {
+      legend: {
+        display: false
+      }
+    }
+  }
+});
+
+</script>
+
+</html>

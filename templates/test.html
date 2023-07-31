@@ -1,0 +1,63 @@
+@app.route('/compress', methods=['POST'])
+def compress():
+    if 'loggedin' in session:
+        if 'file' not in request.files:
+            return redirect(url_for('pdf_user'))
+
+        file = request.files['file']
+        if file.filename == '':
+            return redirect(url_for('pdf_user'))
+
+        if file and allowed_file(file.filename):
+            # Save the uploaded file to a temporary location
+            file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+            file.save(file_path)
+
+            # Compress the PDF file
+            compressed_file_path = compress_pdf(file_path)
+
+            # Delete the original uploaded file
+            os.remove(file_path)
+
+            # Store file details in the database
+            store_file_details(compressed_file_path)
+
+            # Provide the compressed file as a download
+            return send_file(compressed_file_path, download_name='compressed.pdf')
+
+    return redirect(url_for('pdf_user'))
+
+def store_file_details(file_path):
+    # Extract file information
+    file_name = os.path.basename(file_path)
+    file_extension = os.path.splitext(file_name)[1].lower()
+
+    # Get the current user's ID
+    user_id = session['uid']
+
+    # Get the current date and time
+    current_date = datetime.datetime.now()
+
+    # Update the file details in the database
+    cursor = mysql.connection.cursor()
+    cursor.execute('INSERT INTO files VALUES (NULL, %s, %s, %s, %s)', (user_id, file_name, file_extension, current_date))
+    mysql.connection.commit()
+
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() == 'pdf'
+
+
+def compress_pdf(file_path):
+    output_file_path = f"compressed_{file_path}"
+    output_dir = os.path.dirname(output_file_path)
+    os.makedirs(output_dir, exist_ok=True)  # Create the directory if it doesn't exist
+    with open(file_path, "rb") as file:
+        pdf = PdfReader(file)
+        writer = PdfWriter()
+        writer.compress = True  # Enable compression
+        for page in pdf.pages:
+            writer.add_page(page)
+        with open(output_file_path, "wb") as output_file:
+            writer.write(output_file)
+    return output_file_path

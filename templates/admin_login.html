@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/Styles/login.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="design">
+            <div class="pill-1 rotate-45"></div>
+            <div class="pill-2 rotate-45"></div>
+            <div class="pill-3 rotate-45"></div>
+            <div class="pill-4 rotate-45"></div>
+        </div>
+        <div class="login">
+            <h3 class="title">Admin Login</h3>
+            <form class="login" action="{{ url_for('loginadmin') }}" method="post">
+                {% if message %}
+                <div class="alert alert-warning">{{ message }}</div>
+                {% endif %}
+                <div class="text-input">
+                    <i class="ri-user-fill"></i>
+                    <input type="text" placeholder="Email" name="email">
+                </div>
+                <div class="text-input">
+                    <i class="ri-lock-fill"></i>
+                    <input type="password" placeholder="Password" name="password" id="password-input">
+                    <i class="ri-eye-line toggle-password" id="toggle-password"></i>
+                </div>
+                <!-- Add this code to display the CAPTCHA image -->
+                <div class="captcha">
+                    <img src="{{ url_for('captcha') }}" alt="CAPTCHA Image">
+                </div>
+                <!-- Add this input field to capture the CAPTCHA solution -->
+                <div class="text-input">
+                    <i class="ri-key-fill"></i>
+                    <input type="text" placeholder="CAPTCHA" name="captcha">
+                </div>
+                <button class="login-btn">Login as Admin</button>
+                <br>
+            </form>
+            <button class="login-btn"><a href="{{ url_for('homepage') }}" style="color: white;" as>Retrun to Home</a></button>
+        </div>
+    </div>
+    <script src="../static/Scripts/login.js"></script>
+</body>
+</html>
+
+
+<script>
+	// Get the password input and toggle password icon elements
+const passwordInput = document.getElementById('password-input');
+const togglePassword = document.getElementById('toggle-password');
+
+// Add click event listener to the toggle password icon
+togglePassword.addEventListener('click', () => {
+    const type = passwordInput.getAttribute('type');
+    passwordInput.setAttribute('type', type === 'password' ? 'text' : 'password');
+    togglePassword.classList.toggle('ri-eye-line');
+    togglePassword.classList.toggle('ri-eye-off-line');
+});
+
+</script>

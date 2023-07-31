@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>User Registration Form</title>
+<link rel="stylesheet" href="../static/Styles/register.css">
+<!-- Add Font Awesome for the eye icon -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+<br>
+<br>
+<div class="container">
+	<h2>Register here!</h2>
+  <h5>Please fill in the following details.</h5>
+
+  <br>
+
+	<form action="{{ url_for('register') }}" method="post">
+        {% if message is defined and message %}
+			<div class="alert alert-warning">{{ message }}</div>
+		{% endif %}
+
+		<div class="row1">
+			<div class="form-group2">
+				<label for="salutation">Salutation: <span style="color: red;">*</span></label>
+				<select class="form-control" id="salutation" name="salutation">
+					<option value="Mr">Mr</option>
+					<option value="Ms">Ms</option>
+					<option value="Mrs">Mrs</option>
+				</select>
+			</div>
+			<div class="form-group2">
+				<label for="eomployee_id">Employee Id:<span style="color: red;">*</span></label>
+				<input type="text" class="form-control" id="emplyee_id" name="employee_id" placeholder="Employee Id" value="{{ form_data.employee_id }}">
+			</div>
+			<div class="form-group3">
+				<label for="group_number">Group Name:<span style="color: red;">*</span></label>
+				<input type="text" class="form-control" id="group_name" name="group_name" placeholder="Enter Group Name" value="{{ form_data.group_number }}">
+			</div>
+	
+		</div>
+
+		<div class="row">
+			<div class="form-group">
+				<label for="first_name">First Name: <span style="color: red;">*</span></label>
+				<input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter first name" value="{{ form_data.first_name }}">
+			</div>
+			<div class="form-group">
+				<label for="middle_name">Middle Name:</label>
+				<input type="text" class="form-control" id="middle_name" name="middle_name" placeholder="Enter middle name" value="{{ form_data.middle_name }}">
+			</div>
+			<div class="form-group">
+				<label for="last_name">Last Name: <span style="color: red;">*</span></label>
+					<input type="text" class="form-control" id="last_name" name="last_name" placeholder="Enter last name" value="{{ form_data.last_name }}">
+			</div>
+		</div>
+
+
+		<div class="row2">
+			<div class="form-group1">
+				<label for="email">Email: <span style="color: red;">*</span></label>
+				<input type="email" class="form-control" id="email" name="email" placeholder="Enter email" value="{{ form_data.email }}">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="form-group4">
+			<label for="password">Password: <span style="color: red;">*</span></label>
+			<div class="input-group">
+				<input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
+				<div class="input-group-append">
+				<span class="input-group-text password-toggle" onclick="togglePassword('password')">
+					<i class="far fa-eye"></i>
+				</span>
+				</div>
+			</div>
+			</div>
+			<div class="form-group4">
+			<label for="confirm_password">Confirm Password: <span style="color: red;">*</span></label>
+			<div class="input-group">
+				<input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Enter confirmed password">
+				<div class="input-group-append">
+				<span class="input-group-text password-toggle" onclick="togglePassword('confirm_password')">
+					<i class="far fa-eye"></i>
+				</span>
+				</div>
+			</div>
+			</div>
+        </div>
+
+		<h5>Password should be 9-15 characters long. Password must contain one special character. Password must contain one capital alphabet.</h5>
+
+		<br>
+		<br>
+		<div class="form-group5">
+			<button type="submit" class="btn btn-primary">Register</button>
+		</div>
+		<p class="bottom">Already have an account?  <a class="bottom" href="{{url_for('login')}}"> Login here</a></p>
+	</form>
+</div> 
+
+<br>
+<br>
+<!-- Add the JavaScript code to toggle password visibility -->
+<script>
+	function togglePassword(inputId) {
+		var passwordInput = document.getElementById(inputId);
+		if (passwordInput.type === 'password') {
+			passwordInput.type = 'text';
+		} else {
+			passwordInput.type = 'password';
+		}
+	}
+</script>
+
+</body>
+</html>
